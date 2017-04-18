@@ -1,0 +1,40 @@
+version: '2'
+services:
+    db:
+        image: postgres
+        container_name: esideias_db
+        environment:
+            - POSTGRES_PASSWORD
+            - POSTGRES_USER
+            - POSTGRES_DB
+        ports:
+            - "5432:5432"
+    # app:
+    #     build: ./src
+    #     image: django_core
+    #     container_name: ${PROJECT_NAME}_app
+    #     environment:
+    #         - POSTGRES_PASSWORD
+    #         - POSTGRES_USER
+    #         - POSTGRES_DB
+    #     entrypoint: 
+    #     - bash
+    #     - docker-entrypoint.sh
+    #     volumes:
+    #         - ./src:/src
+    #     expose:
+    #         - "80"
+    #     links:
+    #         - db
+    #         - cache
+    # server:
+    #     image: nginx:latest
+    #     container_name: ${PROJECT_NAME}_server
+    #     ports:
+    #     - "80:80"
+    #     volumes:
+    #     - ./src:/src
+    #     - ./nginx:/etc/nginx/conf.d
+    #     - /var/log/nginx/${PROJECT_NAME}/:/var/log/nginx/
+    #     depends_on:
+    #     - app

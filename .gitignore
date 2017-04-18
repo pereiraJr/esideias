@@ -1,0 +1,8 @@
+#VRAPTOR
+out
+.classpath
+.project
+.settings
+.metadata
+#JPA
+persistence.xlm
