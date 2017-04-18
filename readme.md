@@ -1,7 +1,18 @@
-#Some setup information :).
+#ESIdeias
 
-##VRaptor basic setup
+##VRaptor + Maven
+Importe o reposítório como porjeto Maven no Eclipse
 
-Maybe you receive a exception like **java.lang.AssertionError: Parameters aren't present for remove. You must compile your code with -parameters argument.**. In that case, in your eclipse, go to preferences -> compiler -> store information about method parameters
+No Eclipse vá em:
+*File -> Import -> Existing Maven Project* 
+Selecione a pasta descompactada do projeto e clique em *Finish*
+
+
+##Docker + Docker-Compose
+
+
+
+  
+
   	
 
