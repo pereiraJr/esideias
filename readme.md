@@ -1,6 +1,6 @@
-#ESIdeias
+# ESIdeias
 
-##VRaptor + Maven
+## VRaptor + Maven
 Importe o reposítório como porjeto Maven no Eclipse
 
 No Eclipse vá em:
@@ -8,7 +8,7 @@ No Eclipse vá em:
 Selecione a pasta descompactada do projeto e clique em *Finish*
 
 
-##Docker + Docker-Compose
+## Docker + Docker-Compose
 
 
 
