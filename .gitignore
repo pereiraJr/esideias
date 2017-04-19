@@ -6,3 +6,4 @@ out
 .metadata
 #JPA
 persistence.xlm
+/target/
