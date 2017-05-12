@@ -11,10 +11,8 @@ import ideias.models.Usuario;
 @Named
 public class UsuarioLogado implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+	
 	private Usuario usuario;
 
 	public void fazLogin(Usuario usuario) {
