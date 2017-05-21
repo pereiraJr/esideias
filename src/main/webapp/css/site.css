@@ -1,0 +1,20 @@
+.validation-error {
+	display:block;
+	color:red;
+}
+
+.page-content {
+	margin-top:50px
+}
+.current-theme {
+	text-align: right;
+}
+.ideas-list {
+	margin-top: 50px
+}
+.ideas-list .card {
+	margin-bottom: 30px;
+}
+.modal-body {
+	overflow-wrap: break-word;
+}
