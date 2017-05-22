@@ -46,9 +46,9 @@ public IdeiasController(){
     @Open
     @Path("/lista/")
     public void lista (){
-    	List<Ideias> ideia=dao.buscaPorUsuario(usuariologado.getUsuario());
+    	List<Ideias> ideias=dao.buscaPorUsuario(usuariologado.getUsuario());
     	
-    	result.include("ideia",ideia);
+    	result.include("ideia",ideias);
     }
 	
     
