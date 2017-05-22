@@ -18,3 +18,16 @@
 .modal-body {
 	overflow-wrap: break-word;
 }
+.vote-buttons{
+	position: absolute; 
+	left: 0;
+}
+.vote-buttons a{
+	margin-left: 15px;
+}
+.vote-buttons a.like-it{
+	color: #3c763d;
+}
+.vote-buttons a.dont-like-it{
+	color:  #a94442;
+}

@@ -72,8 +72,8 @@ public class AdminController {
 	}
 	@ideias.controllers.Admin
 	@Get
+	@Open
 	public void gostei(Integer ideia) {
-
 		Ideias retorno = ideiaDAO.buscaPorID(ideia);
 		avaliacao.setIdeias(retorno);
 
@@ -85,6 +85,8 @@ public class AdminController {
 		result.redirectTo(this).lista();
 	}
 	@ideias.controllers.Admin
+	@Get
+	@Open
 	public void naogostei(Integer ideia) {
 
 		Ideias retorno = ideiaDAO.buscaPorID(ideia);
