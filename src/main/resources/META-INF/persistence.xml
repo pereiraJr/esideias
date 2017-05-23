@@ -10,10 +10,11 @@
             <property name="hibernate.connection.username" value="nrxpdmismmakxc" />
             <property name="hibernate.connection.password" value="7972ed021b8c6b0130b72b265e4a857a20a2d6f6e46abe322a13086aa6b7178b" />
             <property name="hibernate.connection.url" value="jdbc:postgresql://ec2-107-21-108-204.compute-1.amazonaws.com:5432/d7lnkqagin9nd5?sslmode=require" />
+             <property name="hibernate.connection.shutdown" value="true" />
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
             <property name="hibernate.show_sql" value="true" />
             <property name="hibernate.format_sql" value="true" />
-              <property name="hibernate.hbm2ddl.auto" value="update" />
+                          <property name="hibernate.hbm2ddl.auto" value="update" />
               <property name="hibernate.temp.use_jdbc_metadata_defaults" value="false"/>
             
         </properties>
