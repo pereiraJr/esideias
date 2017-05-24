@@ -7,9 +7,9 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <properties>
             <property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />
-            <property name="hibernate.connection.username" value="nrxpdmismmakxc" />
-            <property name="hibernate.connection.password" value="7972ed021b8c6b0130b72b265e4a857a20a2d6f6e46abe322a13086aa6b7178b" />
-            <property name="hibernate.connection.url" value="jdbc:postgresql://ec2-107-21-108-204.compute-1.amazonaws.com:5432/d7lnkqagin9nd5?sslmode=require" />
+            <property name="hibernate.connection.username" value="yrgubnplqakbit" />
+            <property name="hibernate.connection.password" value="6a1bb2ba2e8a1e3fd3b47735cd3c1dd5bcc164e85abf0f98418a3f1c3052a76b" />
+            <property name="hibernate.connection.url" value="jdbc:postgresql://ec2-54-227-237-223.compute-1.amazonaws.com:5432/dacq3jbfqe3pm5?sslmode=require" />
              <property name="hibernate.connection.shutdown" value="true" />
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
             <property name="hibernate.show_sql" value="true" />
