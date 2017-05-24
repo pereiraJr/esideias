@@ -50,7 +50,6 @@ public class LoginController {
 		usuariologado.fazLogin(usuario);
 		result.redirectTo(IdeiasController.class).lista();
 	}
-
 	@Open
 	public void desloga(){
 		usuariologado.desloga();

@@ -5,7 +5,7 @@
 		<div class="row">
 			<div class="col-xs-12 col-md-6">
 				<form action="${linkTo[AdminController].adiciona(null)}" method="post">
-					<h2>Inscreva-se</h2>
+					<h2>Cadastro banca</h2>
 					<hr />
 					<div class="form-group">
 					    <label for="nome">Nome:</label>
