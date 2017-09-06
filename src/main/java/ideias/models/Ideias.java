@@ -19,6 +19,27 @@ import javax.persistence.TemporalType;
 
 @Entity
 public class Ideias implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
+
+	private String descricao;
+	private String titulo;
+	private Calendar date;
+	
+	private Integer nota;
+	
+	@ManyToOne
+	private Usuario usuario;
+	
+	@Deprecated
+	@OneToMany(mappedBy="ideias",cascade=CascadeType.ALL)
+	private List<Avaliacao> avaliacao= new ArrayList<>();
+	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -43,18 +64,12 @@ public class Ideias implements Serializable {
 			return false;
 		return true;
 	}
-
-	private static final long serialVersionUID = 1L;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
-
-	private String descricao;
-	private String titulo;
-	private Calendar date;
 	
-
+	@Override
+	public String toString() {
+		return "Ideias [id=" + id + ", descricao=" + descricao + ", titulo=" + titulo + ", date=" + date + ", nota="
+				+ nota + ", usuario=" + usuario + "]";
+	}
 
 	public String getDescricao() {
 		return descricao;
@@ -63,9 +78,6 @@ public class Ideias implements Serializable {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-
-	@OneToMany(mappedBy="ideias",cascade=CascadeType.ALL)
-	private List<Avaliacao> avaliacao= new ArrayList<>();
 	
 	public List<Avaliacao> getAvaliacao() {
 		return avaliacao;
@@ -74,9 +86,6 @@ public class Ideias implements Serializable {
 	public void setAvaliacao(ArrayList<Avaliacao> avaliacao) {
 		this.avaliacao = avaliacao;
 	}
-
-	@ManyToOne
-	private Usuario usuario;
 
 	public Integer getId() {
 		return id;
@@ -94,10 +103,6 @@ public class Ideias implements Serializable {
 		this.usuario = usuario;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 	public String getTitulo() {
 		return titulo;
 	}
@@ -105,4 +110,25 @@ public class Ideias implements Serializable {
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
+	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public Calendar getDate() {
+		return date;
+	}
+
+	public void setDate(Calendar date) {
+		this.date = date;
+	}
+
+	public Integer getNota() {
+		return nota;
+	}
+
+	public void setNota(Integer nota) {
+		this.nota = nota;
+	}
+
 }

@@ -53,12 +53,15 @@ public class AdminController {
 	public void index() {
 
 	}
+	
 	@ideias.controllers.Admin
 	@Open
 	public void lista() {
 		List<Ideias> retorno = new ArrayList<>();
+		
 		List<Ideias> ideias = dao.lista(logado.getAdmin());
 		List<Ideias> avaliado = dao.listaJaavaliado(logado.getAdmin());
+	
 		boolean existe = false;
 		for (Ideias i : ideias) {
 			existe = avaliado.contains(i);
@@ -70,6 +73,16 @@ public class AdminController {
 		result.include("ideia", retorno);
 		result.include("avaliado", avaliado);
 	}
+	
+
+	@ideias.controllers.Admin
+	@Open
+	public void tabela(){
+		List<Ideias> ideias = new ArrayList<>();
+		ideias = ideiaDAO.listaOrdenado();
+		result.include("ideiasOrd", ideias);
+	}
+	
 	@ideias.controllers.Admin
 	@Get
 	@Open
@@ -84,6 +97,7 @@ public class AdminController {
 		dao.criarAvaliacao(avaliacao);
 		result.redirectTo(this).lista();
 	}
+	
 	@ideias.controllers.Admin
 	@Get
 	@Open
@@ -100,7 +114,6 @@ public class AdminController {
 	}
 
 	@Open
-
 	public void form() {
 
 	}
@@ -126,7 +139,11 @@ public class AdminController {
 			validator.onErrorForwardTo(this).form();
 		}
 		logado.fazlogin(usuario);
-		result.redirectTo(this).lista();
+		
+		//result.redirectTo(this).lista();
+		result.redirectTo(this).tabela();
+		
 	}
+	
 
 }

@@ -5,18 +5,35 @@
     version="2.0">
 	 <persistence-unit name="ideias">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <properties>
-            <property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />
-            <property name="hibernate.connection.username" value="yolslvrbpkxwmx" />
-            <property name="hibernate.connection.password" value="98f61c79050a22764dbacb5ac8b13e3cca2728024ce4b645fb66b5d845030c29" />
-            <property name="hibernate.connection.url" value="jdbc:postgresql://ec2-54-204-0-88.compute-1.amazonaws.com:5432/d54e7oi7olgm7j?sslmode=require" />
-             <property name="hibernate.connection.shutdown" value="true" />
-            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
-            <property name="hibernate.show_sql" value="true" />
-            <property name="hibernate.format_sql" value="true" />
-                          <property name="hibernate.hbm2ddl.auto" value="update" />
-              <property name="hibernate.temp.use_jdbc_metadata_defaults" value="false"/>
+       
+       <properties>
+			<property name="javax.persistence.jdbc.user" value="ideias" />
+			<property name="javax.persistence.jdbc.password" value="123456" />
+			
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/ideias" />
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+		</properties>
+       
+       
+<!--         <properties> -->
+<!--             <property name="hibernate.connection.driver_class" value="org.postgresql.Driver" /> -->
+<!--             <property name="hibernate.connection.username" value="yolslvrbpkxwmx" /> -->
+<!--             <property name="hibernate.connection.password" value="98f61c79050a22764dbacb5ac8b13e3cca2728024ce4b645fb66b5d845030c29" /> -->
+<!--             <property name="hibernate.connection.url" value="jdbc:postgresql://ec2-54-204-0-88.compute-1.amazonaws.com:5432/d54e7oi7olgm7j?sslmode=require" /> -->
+<!--              <property name="hibernate.connection.shutdown" value="true" /> -->
+<!--             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" /> -->
+<!--             <property name="hibernate.show_sql" value="true" /> -->
+<!--             <property name="hibernate.format_sql" value="true" /> -->
+<!--                           <property name="hibernate.hbm2ddl.auto" value="update" /> -->
+<!--               <property name="hibernate.temp.use_jdbc_metadata_defaults" value="false"/> -->
             
-        </properties>
+<!--         </properties> -->
+    
     </persistence-unit>
 </persistence>
