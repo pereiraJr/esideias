@@ -1,6 +1,7 @@
 package ideias.controllers;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -53,15 +54,16 @@ public class AdminController {
 	public void index() {
 
 	}
-	
+
+	@Deprecated
 	@ideias.controllers.Admin
 	@Open
 	public void lista() {
 		List<Ideias> retorno = new ArrayList<>();
-		
+
 		List<Ideias> ideias = dao.lista(logado.getAdmin());
 		List<Ideias> avaliado = dao.listaJaavaliado(logado.getAdmin());
-	
+
 		boolean existe = false;
 		for (Ideias i : ideias) {
 			existe = avaliado.contains(i);
@@ -73,31 +75,76 @@ public class AdminController {
 		result.include("ideia", retorno);
 		result.include("avaliado", avaliado);
 	}
-	
 
 	@ideias.controllers.Admin
 	@Open
-	public void tabela(){
-		List<Ideias> ideias = new ArrayList<>();
-		ideias = ideiaDAO.listaOrdenado();
-		result.include("ideiasOrd", ideias);
+	public void tabela() {
+
+		List<Ideias> ideias = ideiaDAO.listaOrdenado();
+		ideias = preencherNotas(ideias);
+
+		List<Ideias> avaliado = new ArrayList<>();
+
+		// Feito sem o foreach para evitar falsa Exeption:
+		// ConcurrentModificationException
+		for (Iterator<Ideias> i = ideias.iterator(); i.hasNext();) {
+			Ideias ideia = i.next();
+			for (Avaliacao avaliacao : ideia.getAvaliacao()) {
+				if (avaliacao.getAdmin().getId().equals(1)) {
+					avaliado.add(ideia);
+					i.remove();
+					break;
+				}
+			}
+		}
+
+		boolean vota = true;
+		if (avaliado.size() > 10) {
+			vota = false;
+		}
+
+		result.include("ideiasTab", ideias);
+		result.include("avaliadoTab", avaliado);
+
+		result.include("vota", vota);
+
 	}
-	
+
+	public List<Ideias> preencherNotas(List<Ideias> ListIdeias) {
+		for (Ideias ideias : ListIdeias) {
+			ideias.setNota(sum(ideias.getAvaliacao()));
+		}
+		return ListIdeias;
+	}
+
+	public Integer sum(List<Avaliacao> avaliacoes) {
+		Integer sum = 0;
+		for (Avaliacao avaliacao : avaliacoes) {
+			sum += avaliacao.getNota();
+		}
+		return sum;
+	}
+
+	@Deprecated
 	@ideias.controllers.Admin
 	@Get
 	@Open
 	public void gostei(Integer ideia) {
+
 		Ideias retorno = ideiaDAO.buscaPorID(ideia);
 		avaliacao.setIdeias(retorno);
 
 		avaliacao.setAdmin(logado.getAdmin());
 		avaliacao.setGostou(true);
 		retorno.getAvaliacao().add(avaliacao);
+
 		ideiaDAO.atualiza(retorno);
 		dao.criarAvaliacao(avaliacao);
+
 		result.redirectTo(this).lista();
 	}
-	
+
+	@Deprecated
 	@ideias.controllers.Admin
 	@Get
 	@Open
@@ -110,7 +157,27 @@ public class AdminController {
 		retorno.getAvaliacao().add(avaliacao);
 
 		ideiaDAO.adiciona(retorno);
+
 		result.redirectTo(this).lista();
+	}
+
+	@ideias.controllers.Admin
+	@Get
+	@Open
+	public void votar(Integer ideia, Integer nota) {
+
+		Ideias retorno = ideiaDAO.buscaPorID(ideia);
+
+		avaliacao.setAdmin(logado.getAdmin());
+		avaliacao.setNota(nota);
+		avaliacao.setIdeias(retorno);
+
+		retorno.getAvaliacao().add(avaliacao);
+		ideiaDAO.atualiza(retorno);
+
+		dao.criarAvaliacao(avaliacao);
+
+		result.redirectTo(this).tabela();
 	}
 
 	@Open
@@ -128,7 +195,7 @@ public class AdminController {
 		result.redirectTo(this).index();
 
 	}
-	
+
 	@Open
 	public void autentica(String Login, String Senha) {
 		Admin usuario = null;
@@ -139,11 +206,9 @@ public class AdminController {
 			validator.onErrorForwardTo(this).form();
 		}
 		logado.fazlogin(usuario);
-		
-		//result.redirectTo(this).lista();
+
+		// result.redirectTo(this).lista();
 		result.redirectTo(this).tabela();
-		
 	}
-	
 
 }

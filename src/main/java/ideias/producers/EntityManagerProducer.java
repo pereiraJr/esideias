@@ -13,10 +13,12 @@ public class EntityManagerProducer{
 	
     private static EntityManagerFactory factory = 
         Persistence.createEntityManagerFactory("ideias");
+    
     @Produces @RequestScoped   
     public EntityManager getEntityManager(){
         return factory.createEntityManager();
     }
+    
     public void close(@Disposes EntityManager manager){
         manager.close();
     }

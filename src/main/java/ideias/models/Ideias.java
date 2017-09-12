@@ -3,7 +3,6 @@ package ideias.models;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,15 +10,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 @Entity
 public class Ideias implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -29,16 +26,15 @@ public class Ideias implements Serializable {
 	private String descricao;
 	private String titulo;
 	private Calendar date;
-	
-	private Integer nota;
-	
+
 	@ManyToOne
 	private Usuario usuario;
-	
-	@Deprecated
-	@OneToMany(mappedBy="ideias",cascade=CascadeType.ALL)
-	private List<Avaliacao> avaliacao= new ArrayList<>();
-	
+
+	@OneToMany(mappedBy = "ideias", cascade = CascadeType.ALL)
+	private List<Avaliacao> avaliacao = new ArrayList<>();
+
+	@Transient
+	private Integer nota;
 
 	@Override
 	public int hashCode() {
@@ -64,7 +60,7 @@ public class Ideias implements Serializable {
 			return false;
 		return true;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Ideias [id=" + id + ", descricao=" + descricao + ", titulo=" + titulo + ", date=" + date + ", nota="
@@ -78,7 +74,7 @@ public class Ideias implements Serializable {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	
+
 	public List<Avaliacao> getAvaliacao() {
 		return avaliacao;
 	}
@@ -90,7 +86,7 @@ public class Ideias implements Serializable {
 	public Integer getId() {
 		return id;
 	}
-	
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
@@ -110,7 +106,7 @@ public class Ideias implements Serializable {
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
-	
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}

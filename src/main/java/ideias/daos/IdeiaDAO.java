@@ -7,7 +7,6 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
-import ideias.models.Avaliacao;
 import ideias.models.Ideias;
 import ideias.models.Usuario;
 
@@ -31,13 +30,17 @@ public class IdeiaDAO {
 	}
 
 	public void adiciona(Ideias ideia) {
+	
 		manager.getTransaction().begin();
 		manager.persist(ideia);
 		manager.getTransaction().commit();
 	}
 
 	public void atualiza(Ideias ideia) {
+		
+		manager.getTransaction().begin();
 		manager.persist(ideia);
+		manager.getTransaction().commit();
 	}
 
 	public List<Ideias> buscaPorUsuario(Usuario usuario) {
@@ -55,9 +58,9 @@ public class IdeiaDAO {
 	}
 
 	public List<Ideias> listaOrdenado() {
-		String jpql = "Select i from Ideias i order by i.nota";
-		TypedQuery<Ideias> createQuery = manager.createQuery(jpql, Ideias.class);
-		return createQuery.getResultList();
+		String jpql = "Select i from Ideias as i left join i.avaliacao as a group by i.id order by sum(a.nota) desc";
+		TypedQuery<Ideias> query = manager.createQuery(jpql, Ideias.class);
+		return query.getResultList();
 	}
 
 }
